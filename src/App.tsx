@@ -1,7 +1,7 @@
-import { ButtonPreview } from './components/pages/PreviewPage'
+import { LandingPage } from './components/pages/LandingPage'
 
 function App() {
-  return <ButtonPreview />
+  return <LandingPage />
 }
 
 export default App
