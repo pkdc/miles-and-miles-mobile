@@ -29,3 +29,5 @@ Use these theme tokens in Tailwind classes (e.g., `bg-primary-400`, `text-button
 - Use `clsx` for conditional class name composition
 - Reusable components go in `src/components/`
 - Include accessibility attributes (aria-label, aria-disabled, focus-visible states)
+- When creating new page components, always add a navigation link to that page in the RootLayout header component. Only do this for page components, not UI or other drop-in components
+- When creating new ui components, always add all different states and variations to the PreviewPage in src/components/pages/PreviewPage.tsx. Only do this for UI components, not Page components

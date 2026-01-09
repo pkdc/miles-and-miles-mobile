@@ -1,4 +1,4 @@
-import { ButtonPreview } from './components/pages/ButtonPreview'
+import { ButtonPreview } from './components/pages/PreviewPage'
 
 function App() {
   return <ButtonPreview />
