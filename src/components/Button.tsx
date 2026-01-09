@@ -32,9 +32,9 @@ export function Button({
           "w-full": size === "large",
         },
         {
-          "bg-primary-400 text-white border-primary-400 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary-400":
+          "bg-primary-400 text-white border-primary-400 hover:cursor-pointer hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary-400":
             variant === "primary",
-          "bg-white text-primary-400 border-primary-400 hover:border-primary-500 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed":
+          "bg-white text-primary-400 border-primary-400 hover:cursor-pointer hover:border-primary-500 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white":
             variant === "secondary",
         },
         className

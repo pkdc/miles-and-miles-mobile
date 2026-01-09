@@ -1,11 +1,7 @@
-import './App.css'
+import { ButtonPreview } from './components/pages/ButtonPreview'
 
 function App() {
-  return (
-    <>
-        <h1>Hello World</h1>
-    </>
-  )
+  return <ButtonPreview />
 }
 
 export default App
