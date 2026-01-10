@@ -1,13 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import iconGood from "../../assets/icon-good.svg";
 
-interface LocationInsideCLondonPageProps {
-  onBack: () => void;
-  onNext: () => void;
-}
+export function LocationInsideCLondonPage() {
+  const navigate = useNavigate();
 
-export function LocationInsideCLondonPage({ onBack, onNext }: LocationInsideCLondonPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -27,10 +25,10 @@ export function LocationInsideCLondonPage({ onBack, onNext }: LocationInsideCLon
       </div>
 
       <main className="px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={onNext}>
+        <Button variant="primary" size="large" onClick={() => navigate("/choose-date-time")}>
           Next
         </Button>
-        <Button variant="secondary" size="large" onClick={onBack}>
+        <Button variant="secondary" size="large" onClick={() => navigate("/address")}>
           Back
         </Button>
       </main>

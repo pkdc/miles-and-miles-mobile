@@ -1,14 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import mapImg from "../../assets/10_Downing_street_google_map.png";
 
-interface AddressPageProps {
-  postcode: string;
-  onBack: () => void;
-  onConfirm: () => void;
-}
+export function AddressPage() {
+  const navigate = useNavigate();
 
-export function AddressPage({ postcode: _postcode, onBack, onConfirm }: AddressPageProps) {
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col"
@@ -27,10 +24,10 @@ export function AddressPage({ postcode: _postcode, onBack, onConfirm }: AddressP
 
       <main className="px-2 pb-4">
         <div className="flex flex-col gap-6">
-          <Button variant="primary" size="large" onClick={onConfirm}>
+          <Button variant="primary" size="large" onClick={() => navigate("/location-inside")}>
             Confirm Address
           </Button>
-          <Button variant="secondary" size="large" onClick={onBack}>
+          <Button variant="secondary" size="large" onClick={() => navigate("/")}>
             Back
           </Button>
         </div>

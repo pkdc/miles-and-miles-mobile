@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { VehicleCard } from "../ui/VehicleCard";
 import logoImg from "../../assets/logo-desktop-color 2.png";
@@ -10,12 +11,9 @@ const selectedVehicle = {
   price: 1200,
 };
 
-interface VehicleDetailsPageProps {
-  onBack: () => void;
-  onSelectVehicle: () => void;
-}
+export function VehicleDetailsPage() {
+  const navigate = useNavigate();
 
-export function VehicleDetailsPage({ onBack, onSelectVehicle }: VehicleDetailsPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -60,10 +58,10 @@ export function VehicleDetailsPage({ onBack, onSelectVehicle }: VehicleDetailsPa
       </div>
 
       <main className="px-2 pb-4 pt-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={onSelectVehicle}>
+        <Button variant="primary" size="large" onClick={() => navigate("/confirm-delivery")}>
           Select Vehicle
         </Button>
-        <Button variant="secondary" size="large" onClick={onBack}>
+        <Button variant="secondary" size="large" onClick={() => navigate("/available-vehicles")}>
           Back
         </Button>
       </main>

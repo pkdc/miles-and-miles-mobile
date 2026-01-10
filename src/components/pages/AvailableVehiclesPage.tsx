@@ -1,14 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { VehicleCard, type Vehicle } from "../ui/VehicleCard";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import rangeroverRed from "../../assets/rangerover_red.png";
 import rangeroverGrey from "../../assets/rangerover_grey.png";
 import jaguarSilver from "../../assets/jaguar_silver.png";
-
-interface AvailableVehiclesPageProps {
-  onBack: () => void;
-  onViewDetails: () => void;
-}
 
 const vehicles: Vehicle[] = [
   { id: 1, name: "Range Rover Evoque P300e R-Dynamic HSE", image: rangeroverRed, price: 1200 },
@@ -28,7 +24,9 @@ const vehicles: Vehicle[] = [
   { id: 15, name: "Range Rover Evoque P300e R-Dynamic HSE", image: rangeroverRed, price: 1200 },
 ];
 
-export function AvailableVehiclesPage({ onBack, onViewDetails }: AvailableVehiclesPageProps) {
+export function AvailableVehiclesPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -63,10 +61,10 @@ export function AvailableVehiclesPage({ onBack, onViewDetails }: AvailableVehicl
       </div>
 
       <main className="mt-auto px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={onViewDetails}>
+        <Button variant="primary" size="large" onClick={() => navigate("/vehicle-details")}>
           View Vehicle Details
         </Button>
-        <Button variant="secondary" size="large" onClick={onBack}>
+        <Button variant="secondary" size="large" onClick={() => navigate("/choose-date-time")}>
           Back
         </Button>
       </main>

@@ -1,13 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import rangeroverRed from "../../assets/rangerover_red.png";
 
-interface ConfirmDeliveryDetailsPageProps {
-  onBack: () => void;
-  onConfirmOrder: () => void;
-}
+export function ConfirmDeliveryDetailsPage() {
+  const navigate = useNavigate();
 
-export function ConfirmDeliveryDetailsPage({ onBack, onConfirmOrder }: ConfirmDeliveryDetailsPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -40,10 +38,10 @@ export function ConfirmDeliveryDetailsPage({ onBack, onConfirmOrder }: ConfirmDe
       </div>
 
       <main className="px-2 pb-4 pt-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={onConfirmOrder}>
+        <Button variant="primary" size="large" onClick={() => navigate("/confirmation")}>
           Confirm Order
         </Button>
-        <Button variant="secondary" size="large" onClick={onBack}>
+        <Button variant="secondary" size="large" onClick={() => navigate("/vehicle-details")}>
           Back
         </Button>
       </main>

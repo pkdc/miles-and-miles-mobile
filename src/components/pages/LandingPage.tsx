@@ -1,18 +1,13 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import heroImg from "../../assets/MM-Home-3 1.png";
 
-interface LandingPageProps {
-  postcode: string;
-  onPostcodeChange: (value: string) => void;
-  onCheckAddress: () => void;
-}
+export function LandingPage() {
+  const navigate = useNavigate();
+  const [postcode, setPostcode] = useState("");
 
-export function LandingPage({
-  postcode,
-  onPostcodeChange,
-  onCheckAddress,
-}: LandingPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -44,12 +39,12 @@ export function LandingPage({
             id="postcode"
             type="text"
             value={postcode}
-            onChange={(e) => onPostcodeChange(e.target.value)}
+            onChange={(e) => setPostcode(e.target.value)}
             placeholder="SW1A 2AB"
             className="border border-neutral-400 p-3 text-lg text-neutral-800 bg-white focus:outline-none focus:border-primary-400"
             aria-label="Enter your postcode"
           />
-          <Button variant="primary" size="large" onClick={onCheckAddress}>
+          <Button variant="primary" size="large" onClick={() => navigate("/address")}>
             Check Address
           </Button>
         </div>

@@ -1,12 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import iconsChecked from "../../assets/icons_checked.png";
 
-interface ConfirmationPageProps {
-  onHome: () => void;
-}
+export function ConfirmationPage() {
+  const navigate = useNavigate();
 
-export function ConfirmationPage({ onHome }: ConfirmationPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -37,7 +36,7 @@ export function ConfirmationPage({ onHome }: ConfirmationPageProps) {
             </div>
           </div>
 
-          <Button variant="primary" size="medium" onClick={onHome}>
+          <Button variant="primary" size="medium" onClick={() => navigate("/")}>
             Home
           </Button>
         </div>

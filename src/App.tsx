@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LandingPage } from './components/pages/LandingPage'
 import { AddressPage } from './components/pages/AddressPage'
 import { LocationInsideCLondonPage } from './components/pages/LocationInsideCLondonPage'
@@ -8,82 +8,19 @@ import { VehicleDetailsPage } from './components/pages/VehicleDetailsPage'
 import { ConfirmDeliveryDetailsPage } from './components/pages/ConfirmDeliveryDetailsPage'
 import { ConfirmationPage } from './components/pages/ConfirmationPage'
 
-type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles' | 'vehicleDetails' | 'confirmDelivery' | 'confirmation'
+const router = createBrowserRouter([
+  { path: '/', element: <LandingPage /> },
+  { path: '/address', element: <AddressPage /> },
+  { path: '/location-inside', element: <LocationInsideCLondonPage /> },
+  { path: '/choose-date-time', element: <ChooseDateTimePage /> },
+  { path: '/available-vehicles', element: <AvailableVehiclesPage /> },
+  { path: '/vehicle-details', element: <VehicleDetailsPage /> },
+  { path: '/confirm-delivery', element: <ConfirmDeliveryDetailsPage /> },
+  { path: '/confirmation', element: <ConfirmationPage /> },
+])
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('landing')
-  const [postcode, setPostcode] = useState('')
-
-  if (currentPage === 'confirmation') {
-    return (
-      <ConfirmationPage
-        onHome={() => setCurrentPage('landing')}
-      />
-    )
-  }
-
-  if (currentPage === 'confirmDelivery') {
-    return (
-      <ConfirmDeliveryDetailsPage
-        onBack={() => setCurrentPage('vehicleDetails')}
-        onConfirmOrder={() => setCurrentPage('confirmation')}
-      />
-    )
-  }
-
-  if (currentPage === 'vehicleDetails') {
-    return (
-      <VehicleDetailsPage
-        onBack={() => setCurrentPage('availableVehicles')}
-        onSelectVehicle={() => setCurrentPage('confirmDelivery')}
-      />
-    )
-  }
-
-  if (currentPage === 'availableVehicles') {
-    return (
-      <AvailableVehiclesPage
-        onBack={() => setCurrentPage('chooseDateTime')}
-        onViewDetails={() => setCurrentPage('vehicleDetails')}
-      />
-    )
-  }
-
-  if (currentPage === 'chooseDateTime') {
-    return (
-      <ChooseDateTimePage
-        onBack={() => setCurrentPage('locationInside')}
-        onConfirm={() => setCurrentPage('availableVehicles')}
-      />
-    )
-  }
-
-  if (currentPage === 'locationInside') {
-    return (
-      <LocationInsideCLondonPage
-        onBack={() => setCurrentPage('address')}
-        onNext={() => setCurrentPage('chooseDateTime')}
-      />
-    )
-  }
-
-  if (currentPage === 'address') {
-    return (
-      <AddressPage
-        postcode={postcode}
-        onBack={() => setCurrentPage('landing')}
-        onConfirm={() => setCurrentPage('locationInside')}
-      />
-    )
-  }
-
-  return (
-    <LandingPage
-      postcode={postcode}
-      onPostcodeChange={setPostcode}
-      onCheckAddress={() => setCurrentPage('address')}
-    />
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
