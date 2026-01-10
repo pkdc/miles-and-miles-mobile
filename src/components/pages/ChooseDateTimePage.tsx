@@ -1,10 +1,22 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
+import { DatePickerModal } from "../ui/DatePickerModal";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import openDoorImg from "../../assets/open_door.png";
 
 export function ChooseDateTimePage() {
   const navigate = useNavigate();
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
@@ -22,13 +34,24 @@ export function ChooseDateTimePage() {
         </p>
 
         <div className="flex flex-col gap-4 mt-4">
-          <button className="w-full h-11 px-3 text-left text-xl text-neutral-500 border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500">
-            Pick a date for the delivery
+          <button
+            className="w-full h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
+            style={{ color: selectedDate ? "#1a1a1a" : "#737373" }}
+            onClick={() => setIsDatePickerOpen(true)}
+          >
+            {selectedDate ? formatDate(selectedDate) : "Pick a date for the delivery"}
           </button>
           <button className="w-full h-11 px-3 text-left text-xl text-neutral-500 border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500">
             Pick a time for the delivery
           </button>
         </div>
+
+        <DatePickerModal
+          isOpen={isDatePickerOpen}
+          onClose={() => setIsDatePickerOpen(false)}
+          onSelect={setSelectedDate}
+          selectedDate={selectedDate}
+        />
       </div>
 
       <div className="flex-1 flex items-center justify-center px-2 py-4">
