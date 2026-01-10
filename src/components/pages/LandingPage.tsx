@@ -4,9 +4,16 @@ import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import heroImg from "../../assets/MM-Home-3 1.png";
 
+const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i;
+
+function isValidUKPostcode(postcode: string): boolean {
+  return UK_POSTCODE_REGEX.test(postcode.trim());
+}
+
 export function LandingPage() {
   const navigate = useNavigate();
-  const [postcode, setPostcode] = useState("");
+  const [postcode, setPostcode] = useState("SW1A 2AB");
+  const isPostcodeValid = isValidUKPostcode(postcode);
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
@@ -44,7 +51,12 @@ export function LandingPage() {
             className="border border-neutral-400 p-3 text-lg text-neutral-800 bg-white focus:outline-none focus:border-primary-400"
             aria-label="Enter your postcode"
           />
-          <Button variant="primary" size="large" onClick={() => navigate("/address")}>
+          <Button
+            variant="primary"
+            size="large"
+            disabled={!isPostcodeValid}
+            onClick={() => navigate("/address")}
+          >
             Check Address
           </Button>
         </div>
