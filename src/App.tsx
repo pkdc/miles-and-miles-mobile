@@ -20,7 +20,14 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <div className="w-full bg-yellow-50 border-b border-yellow-200 p-2 text-center text-xs font-medium text-yellow-800 fixed top-0 left-0 right-0 z-50">
+        ⚠️ Please use mobile to view this prototype.
+      </div>
+      <RouterProvider router={router} />
+    </>
+  )
 }
 
 export default App
