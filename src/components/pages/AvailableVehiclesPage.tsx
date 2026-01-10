@@ -6,6 +6,7 @@ import jaguarSilver from "../../assets/jaguar_silver.png";
 
 interface AvailableVehiclesPageProps {
   onBack: () => void;
+  onViewDetails: () => void;
 }
 
 interface Vehicle {
@@ -47,7 +48,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   );
 }
 
-export function AvailableVehiclesPage({ onBack }: AvailableVehiclesPageProps) {
+export function AvailableVehiclesPage({ onBack, onViewDetails }: AvailableVehiclesPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -82,7 +83,7 @@ export function AvailableVehiclesPage({ onBack }: AvailableVehiclesPageProps) {
       </div>
 
       <main className="mt-auto px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="large" onClick={onViewDetails}>
           View Vehicle Details
         </Button>
         <Button variant="secondary" size="large" onClick={onBack}>
