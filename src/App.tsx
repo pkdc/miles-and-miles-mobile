@@ -5,17 +5,27 @@ import { LocationInsideCLondonPage } from './components/pages/LocationInsideCLon
 import { ChooseDateTimePage } from './components/pages/ChooseDateTimePage'
 import { AvailableVehiclesPage } from './components/pages/AvailableVehiclesPage'
 import { VehicleDetailsPage } from './components/pages/VehicleDetailsPage'
+import { ConfirmDeliveryDetailsPage } from './components/pages/ConfirmDeliveryDetailsPage'
 
-type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles' | 'vehicleDetails'
+type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles' | 'vehicleDetails' | 'confirmDelivery'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing')
   const [postcode, setPostcode] = useState('')
 
+  if (currentPage === 'confirmDelivery') {
+    return (
+      <ConfirmDeliveryDetailsPage
+        onBack={() => setCurrentPage('vehicleDetails')}
+      />
+    )
+  }
+
   if (currentPage === 'vehicleDetails') {
     return (
       <VehicleDetailsPage
         onBack={() => setCurrentPage('availableVehicles')}
+        onSelectVehicle={() => setCurrentPage('confirmDelivery')}
       />
     )
   }

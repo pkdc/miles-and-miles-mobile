@@ -12,9 +12,10 @@ const selectedVehicle = {
 
 interface VehicleDetailsPageProps {
   onBack: () => void;
+  onSelectVehicle: () => void;
 }
 
-export function VehicleDetailsPage({ onBack }: VehicleDetailsPageProps) {
+export function VehicleDetailsPage({ onBack, onSelectVehicle }: VehicleDetailsPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -59,7 +60,7 @@ export function VehicleDetailsPage({ onBack }: VehicleDetailsPageProps) {
       </div>
 
       <main className="px-2 pb-4 pt-4 flex flex-col gap-6">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="large" onClick={onSelectVehicle}>
           Select Vehicle
         </Button>
         <Button variant="secondary" size="large" onClick={onBack}>
