@@ -2,13 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { DatePickerModal } from "../ui/DatePickerModal";
+import { TimePickerModal } from "../ui/TimePickerModal";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import openDoorImg from "../../assets/open_door.png";
+
+interface SelectedTime {
+  hour: number;
+  minute: number;
+  period: "AM" | "PM";
+}
 
 export function ChooseDateTimePage() {
   const navigate = useNavigate();
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [selectedTime, setSelectedTime] = useState<SelectedTime | undefined>();
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-GB", {
@@ -16,6 +25,14 @@ export function ChooseDateTimePage() {
       month: "long",
       year: "numeric",
     });
+  };
+
+  const formatTime = (time: SelectedTime) => {
+    return `${time.hour}:${time.minute.toString().padStart(2, "0")} ${time.period}`;
+  };
+
+  const handleTimeSelect = (hour: number, minute: number, period: "AM" | "PM") => {
+    setSelectedTime({ hour, minute, period });
   };
 
   return (
@@ -41,8 +58,12 @@ export function ChooseDateTimePage() {
           >
             {selectedDate ? formatDate(selectedDate) : "Pick a date for the delivery"}
           </button>
-          <button className="w-full h-11 px-3 text-left text-xl text-neutral-500 border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500">
-            Pick a time for the delivery
+          <button
+            className="w-full h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
+            style={{ color: selectedTime ? "#1a1a1a" : "#737373" }}
+            onClick={() => setIsTimePickerOpen(true)}
+          >
+            {selectedTime ? formatTime(selectedTime) : "Pick a time for the delivery"}
           </button>
         </div>
 
@@ -51,6 +72,15 @@ export function ChooseDateTimePage() {
           onClose={() => setIsDatePickerOpen(false)}
           onSelect={setSelectedDate}
           selectedDate={selectedDate}
+        />
+
+        <TimePickerModal
+          isOpen={isTimePickerOpen}
+          onClose={() => setIsTimePickerOpen(false)}
+          onSelect={handleTimeSelect}
+          initialHour={selectedTime?.hour}
+          initialMinute={selectedTime?.minute}
+          initialPeriod={selectedTime?.period}
         />
       </div>
 
