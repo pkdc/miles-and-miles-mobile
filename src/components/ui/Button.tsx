@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
 
 type ButtonVariant = "primary" | "secondary";
-type ButtonSize = "default" | "large";
+type ButtonSize = "default" | "medium" | "large";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -29,6 +29,7 @@ export function Button({
         "flex items-center justify-center px-8 py-4 rounded-2xl text-button font-normal transition-colors border",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
         {
+          "w-48": size === "medium",
           "w-full": size === "large",
         },
         {

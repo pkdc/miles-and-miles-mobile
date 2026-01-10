@@ -4,9 +4,10 @@ import rangeroverRed from "../../assets/rangerover_red.png";
 
 interface ConfirmDeliveryDetailsPageProps {
   onBack: () => void;
+  onConfirmOrder: () => void;
 }
 
-export function ConfirmDeliveryDetailsPage({ onBack }: ConfirmDeliveryDetailsPageProps) {
+export function ConfirmDeliveryDetailsPage({ onBack, onConfirmOrder }: ConfirmDeliveryDetailsPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -39,7 +40,7 @@ export function ConfirmDeliveryDetailsPage({ onBack }: ConfirmDeliveryDetailsPag
       </div>
 
       <main className="px-2 pb-4 pt-4 flex flex-col gap-6">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="large" onClick={onConfirmOrder}>
           Confirm Order
         </Button>
         <Button variant="secondary" size="large" onClick={onBack}>

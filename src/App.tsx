@@ -6,17 +6,27 @@ import { ChooseDateTimePage } from './components/pages/ChooseDateTimePage'
 import { AvailableVehiclesPage } from './components/pages/AvailableVehiclesPage'
 import { VehicleDetailsPage } from './components/pages/VehicleDetailsPage'
 import { ConfirmDeliveryDetailsPage } from './components/pages/ConfirmDeliveryDetailsPage'
+import { ConfirmationPage } from './components/pages/ConfirmationPage'
 
-type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles' | 'vehicleDetails' | 'confirmDelivery'
+type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles' | 'vehicleDetails' | 'confirmDelivery' | 'confirmation'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing')
   const [postcode, setPostcode] = useState('')
 
+  if (currentPage === 'confirmation') {
+    return (
+      <ConfirmationPage
+        onHome={() => setCurrentPage('landing')}
+      />
+    )
+  }
+
   if (currentPage === 'confirmDelivery') {
     return (
       <ConfirmDeliveryDetailsPage
         onBack={() => setCurrentPage('vehicleDetails')}
+        onConfirmOrder={() => setCurrentPage('confirmation')}
       />
     )
   }
