@@ -4,9 +4,10 @@ import iconGood from "../../assets/icon-good.svg";
 
 interface LocationInsideCLondonPageProps {
   onBack: () => void;
+  onNext: () => void;
 }
 
-export function LocationInsideCLondonPage({ onBack }: LocationInsideCLondonPageProps) {
+export function LocationInsideCLondonPage({ onBack, onNext }: LocationInsideCLondonPageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -26,7 +27,7 @@ export function LocationInsideCLondonPage({ onBack }: LocationInsideCLondonPageP
       </div>
 
       <main className="px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="large" onClick={onNext}>
           Next
         </Button>
         <Button variant="secondary" size="large" onClick={onBack}>
