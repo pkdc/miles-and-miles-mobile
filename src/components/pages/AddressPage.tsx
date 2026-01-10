@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from "../ui/Button";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import mapImg from "../../assets/10_Downing_street_google_map.png";
 

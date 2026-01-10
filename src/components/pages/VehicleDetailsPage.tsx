@@ -1,6 +1,14 @@
-import { Button } from "../Button";
+import { Button } from "../ui/Button";
+import { VehicleCard } from "../ui/VehicleCard";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import rangeroverRed from "../../assets/rangerover_red.png";
+
+const selectedVehicle = {
+  id: 1,
+  name: "Range Rover Evoque P300e R-Dynamic HSE",
+  image: rangeroverRed,
+  price: 1200,
+};
 
 interface VehicleDetailsPageProps {
   onBack: () => void;
@@ -19,16 +27,8 @@ export function VehicleDetailsPage({ onBack }: VehicleDetailsPageProps) {
           Vehicle Details
         </h1>
 
-        <div className="flex flex-col items-center mt-4">
-          <img
-            src={rangeroverRed}
-            alt="Range Rover Evoque"
-            className="w-72 h-32 object-contain"
-          />
-          <p className="text-xl text-black mt-4">
-            Range Rover Evoque P300e R-Dynamic HSE
-          </p>
-          <p className="text-xl text-black mt-2">£1200 per day</p>
+        <div className="mt-4">
+          <VehicleCard vehicle={selectedVehicle} size="large" />
         </div>
 
         <div className="mt-6 text-base text-black">

@@ -1,4 +1,5 @@
-import { Button } from "../Button";
+import { Button } from "../ui/Button";
+import { VehicleCard, type Vehicle } from "../ui/VehicleCard";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import rangeroverRed from "../../assets/rangerover_red.png";
 import rangeroverGrey from "../../assets/rangerover_grey.png";
@@ -7,13 +8,6 @@ import jaguarSilver from "../../assets/jaguar_silver.png";
 interface AvailableVehiclesPageProps {
   onBack: () => void;
   onViewDetails: () => void;
-}
-
-interface Vehicle {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
 }
 
 const vehicles: Vehicle[] = [
@@ -33,20 +27,6 @@ const vehicles: Vehicle[] = [
   { id: 14, name: "Jaguar F-Pace R Dynamic HSE", image: jaguarSilver, price: 1000 },
   { id: 15, name: "Range Rover Evoque P300e R-Dynamic HSE", image: rangeroverRed, price: 1200 },
 ];
-
-function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
-  return (
-    <div className="bg-white/25 rounded-3xl p-2 flex flex-col items-center gap-2">
-      <img
-        src={vehicle.image}
-        alt={vehicle.name}
-        className="w-full h-20 object-contain"
-      />
-      <p className="text-xs text-black text-center">{vehicle.name}</p>
-      <p className="text-xs text-black">£{vehicle.price} per day</p>
-    </div>
-  );
-}
 
 export function AvailableVehiclesPage({ onBack, onViewDetails }: AvailableVehiclesPageProps) {
   return (
