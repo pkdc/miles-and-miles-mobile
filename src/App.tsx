@@ -3,17 +3,27 @@ import { LandingPage } from './components/pages/LandingPage'
 import { AddressPage } from './components/pages/AddressPage'
 import { LocationInsideCLondonPage } from './components/pages/LocationInsideCLondonPage'
 import { ChooseDateTimePage } from './components/pages/ChooseDateTimePage'
+import { AvailableVehiclesPage } from './components/pages/AvailableVehiclesPage'
 
-type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime'
+type Page = 'landing' | 'address' | 'locationInside' | 'chooseDateTime' | 'availableVehicles'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing')
   const [postcode, setPostcode] = useState('')
 
+  if (currentPage === 'availableVehicles') {
+    return (
+      <AvailableVehiclesPage
+        onBack={() => setCurrentPage('chooseDateTime')}
+      />
+    )
+  }
+
   if (currentPage === 'chooseDateTime') {
     return (
       <ChooseDateTimePage
         onBack={() => setCurrentPage('locationInside')}
+        onConfirm={() => setCurrentPage('availableVehicles')}
       />
     )
   }

@@ -4,9 +4,10 @@ import openDoorImg from "../../assets/open_door.png";
 
 interface ChooseDateTimePageProps {
   onBack: () => void;
+  onConfirm: () => void;
 }
 
-export function ChooseDateTimePage({ onBack }: ChooseDateTimePageProps) {
+export function ChooseDateTimePage({ onBack, onConfirm }: ChooseDateTimePageProps) {
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
       <header className="flex flex-col items-center py-2">
@@ -41,7 +42,7 @@ export function ChooseDateTimePage({ onBack }: ChooseDateTimePageProps) {
       </div>
 
       <main className="px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="large" onClick={onConfirm}>
           Confirm Date and Time
         </Button>
         <Button variant="secondary" size="large" onClick={onBack}>
