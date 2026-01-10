@@ -10,17 +10,25 @@ export interface Vehicle {
 interface VehicleCardProps {
   vehicle: Vehicle;
   size?: "small" | "large";
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-export function VehicleCard({ vehicle, size = "small" }: VehicleCardProps) {
+export function VehicleCard({ vehicle, size = "small", isSelected = false, onClick }: VehicleCardProps) {
   const isLarge = size === "large";
 
   return (
     <div
       className={clsx(
         "flex flex-col items-center",
-        isLarge ? "gap-4" : "bg-white/25 rounded-3xl p-2 gap-2"
+        isLarge ? "gap-4" : "rounded-3xl p-2 gap-2",
+        !isLarge && (isSelected ? "bg-primary-400/20" : "bg-white/25"),
+        onClick && "cursor-pointer"
       )}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.();
+      }}
     >
       <img
         src={vehicle.image}

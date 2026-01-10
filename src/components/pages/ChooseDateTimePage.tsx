@@ -51,20 +51,42 @@ export function ChooseDateTimePage() {
         </p>
 
         <div className="flex flex-col gap-4 mt-4">
-          <button
-            className="w-full h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
-            style={{ color: selectedDate ? "#1a1a1a" : "#737373" }}
-            onClick={() => setIsDatePickerOpen(true)}
-          >
-            {selectedDate ? formatDate(selectedDate) : "Pick a date for the delivery"}
-          </button>
-          <button
-            className="w-full h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
-            style={{ color: selectedTime ? "#1a1a1a" : "#737373" }}
-            onClick={() => setIsTimePickerOpen(true)}
-          >
-            {selectedTime ? formatTime(selectedTime) : "Pick a time for the delivery"}
-          </button>
+          <div className="flex gap-2">
+            <button
+              className="flex-1 h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
+              style={{ color: selectedDate ? "#1a1a1a" : "#737373" }}
+              onClick={() => setIsDatePickerOpen(true)}
+            >
+              {selectedDate ? formatDate(selectedDate) : "Pick a date for the delivery"}
+            </button>
+            {selectedDate && (
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={() => setSelectedDate(undefined)}
+              >
+                Clear
+              </Button>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button
+              className="flex-1 h-11 px-3 text-left text-xl border border-neutral-400 rounded bg-white hover:cursor-pointer hover:border-primary-500 hover:text-primary-500"
+              style={{ color: selectedTime ? "#1a1a1a" : "#737373" }}
+              onClick={() => setIsTimePickerOpen(true)}
+            >
+              {selectedTime ? formatTime(selectedTime) : "Pick a time for the delivery"}
+            </button>
+            {selectedTime && (
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={() => setSelectedTime(undefined)}
+              >
+                Clear
+              </Button>
+            )}
+          </div>
         </div>
 
         <DatePickerModal
@@ -93,7 +115,10 @@ export function ChooseDateTimePage() {
       </div>
 
       <main className="px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={() => navigate("/available-vehicles")}>
+        <Button variant="primary"
+        size="large"
+        disabled={!selectedDate || !selectedTime}
+        onClick={() => navigate("/available-vehicles")}>
           Confirm Date and Time
         </Button>
         <Button variant="secondary" size="large" onClick={() => navigate("/location-inside")}>

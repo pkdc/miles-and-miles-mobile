@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { VehicleCard, type Vehicle } from "../ui/VehicleCard";
@@ -26,9 +27,13 @@ const vehicles: Vehicle[] = [
 
 export function AvailableVehiclesPage() {
   const navigate = useNavigate();
+  const [selectedVehicleId, setSelectedVehicleId] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-background-200 flex flex-col">
+    <div
+      className="min-h-screen bg-background-200 flex flex-col"
+      onClick={() => setSelectedVehicleId(null)}
+    >
       <header className="flex flex-col items-center py-2">
         <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
         <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
@@ -55,16 +60,27 @@ export function AvailableVehiclesPage() {
       <div className="h-[540px] overflow-y-auto px-2 py-4">
         <div className="grid grid-cols-2 gap-4">
           {vehicles.map((vehicle) => (
-            <VehicleCard key={vehicle.id} vehicle={vehicle} />
+            <VehicleCard
+              key={vehicle.id}
+              vehicle={vehicle}
+              isSelected={selectedVehicleId === vehicle.id}
+              onClick={() => setSelectedVehicleId(vehicle.id)}
+            />
           ))}
         </div>
       </div>
 
       <main className="mt-auto px-2 pb-4 flex flex-col gap-6">
-        <Button variant="primary" size="large" onClick={() => navigate("/vehicle-details")}>
+        <Button variant="primary"
+        size="large"
+        disabled={!selectedVehicleId}
+        onClick={() => navigate("/vehicle-details")}>
           View Vehicle Details
         </Button>
-        <Button variant="secondary" size="large" onClick={() => navigate("/choose-date-time")}>
+        <Button
+        variant="secondary"
+        size="large"
+        onClick={() => navigate("/choose-date-time")}>
           Back
         </Button>
       </main>
