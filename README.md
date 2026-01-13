@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+# Miles and Miles Mobile
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**⚠️ Important: This is a mobile-only UX prototype.**
 
-Currently, two official plugins are available:
+This project is a UX prototype designed exclusively for mobile devices. It demonstrates the user flow for a vehicle rental and delivery service application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+This is a UX prototype built with React and TypeScript to showcase the mobile user experience for Miles and Miles. The prototype includes a complete booking flow from landing page through vehicle selection and confirmation.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** with TypeScript
+- **Vite 7** as build tool
+- **Tailwind CSS v4** for styling
+- **React Router DOM** for navigation
+- **ESLint** for code quality
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (v18 or higher recommended)
+- npm or yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Start the development server:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+**Note:** This prototype is optimized for mobile viewports. For the best experience, view it on a mobile device or use your browser's device emulation mode.
+
+### Build
+
+Build for production:
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── pages/          # Page components for the booking flow
+│   └── ui/             # Reusable UI components
+├── assets/             # Images and static assets
+├── App.tsx             # Main app component with routing
+└── main.tsx            # Application entry point
+```
+
+## Pages
+
+The prototype includes the following pages in the booking flow:
+
+- Landing Page (`/`)
+- Address Selection (`/address`)
+- Location Inside London (`/location-inside`)
+- Date & Time Selection (`/choose-date-time`)
+- Available Vehicles (`/available-vehicles`)
+- Vehicle Details (`/vehicle-details`)
+- Delivery Details Confirmation (`/confirm-delivery`)
+- Confirmation Page (`/confirmation`)
+- Preview Page (`/preview`) - Accessible through the `/preview` URL for component showcase
+
+## Styling
+
+This project uses Tailwind CSS v4 with custom theme tokens defined in `src/index.css`. Custom colors and font sizes are available as Tailwind utility classes.
+
+## Disclaimer
+
+This is a UX prototype and is not intended for production use. It is designed to demonstrate user flows and interface design concepts for mobile devices only.
