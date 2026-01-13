@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import clsx from "clsx";
 
 interface DatePickerModalProps {
@@ -9,6 +9,7 @@ interface DatePickerModalProps {
 }
 
 const DAYS = ["M", "T", "W", "T", "F", "S", "S"];
+const DAYS_FULL = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
@@ -29,6 +30,23 @@ export function DatePickerModal({
   const [viewYear, setViewYear] = useState(selectedDate?.getFullYear() ?? today.getFullYear());
   const [viewMonth, setViewMonth] = useState(selectedDate?.getMonth() ?? today.getMonth());
   const [tempSelectedDate, setTempSelectedDate] = useState<Date | undefined>(selectedDate);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Focus management and escape key handler
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    dialogRef.current?.focus();
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -98,48 +116,56 @@ export function DatePickerModal({
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={onClose}
+      role="presentation"
     >
       <div
-        className="bg-primary-100 rounded-2xl p-6 flex flex-col items-center gap-4"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Choose a date"
+        tabIndex={-1}
+        className="bg-primary-100 rounded-2xl p-6 flex flex-col items-center gap-4 focus:outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="bg-white rounded-lg shadow-lg w-80 overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-3 py-2">
-            <button
+            <div
+              aria-live="polite"
+              aria-atomic="true"
               className="bg-primary-100 text-white text-sm font-medium px-3 py-2 rounded-2xl flex items-center gap-1"
-              onClick={() => {}}
             >
               {monthName}
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 4L5 7L8 4" stroke="white" strokeWidth="1.5" />
-              </svg>
-            </button>
-            <div className="flex gap-6">
+            </div>
+            <div className="flex gap-6" role="group" aria-label="Month navigation">
               <button
-                className="w-10 h-10 flex items-center justify-center"
+                type="button"
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 onClick={handlePrevMonth}
                 aria-label="Previous month"
               >
-                <div className="w-2.5 h-2.5 border-l-2 border-t-2 border-neutral-700 rotate-[-45deg]" />
+                <div className="w-2.5 h-2.5 border-l-2 border-t-2 border-neutral-700 rotate-[-45deg]" aria-hidden="true" />
               </button>
               <button
-                className="w-10 h-10 flex items-center justify-center"
+                type="button"
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 onClick={handleNextMonth}
                 aria-label="Next month"
               >
-                <div className="w-2.5 h-2.5 border-r-2 border-b-2 border-neutral-700 rotate-[-45deg]" />
+                <div className="w-2.5 h-2.5 border-r-2 border-b-2 border-neutral-700 rotate-[-45deg]" aria-hidden="true" />
               </button>
             </div>
           </div>
 
           {/* Calendar */}
-          <div className="px-3 pb-3">
+          <div className="px-3 pb-3" role="grid" aria-label={monthName}>
             {/* Day headers */}
-            <div className="grid grid-cols-7 gap-0">
+            <div className="grid grid-cols-7 gap-0" role="row">
               {DAYS.map((day, i) => (
                 <div
                   key={i}
+                  role="columnheader"
+                  aria-label={DAYS_FULL[i]}
                   className="w-10 h-10 flex items-center justify-center text-xs font-medium text-neutral-600"
                 >
                   {day}
@@ -149,22 +175,36 @@ export function DatePickerModal({
 
             {/* Weeks */}
             {weeks.map((week, weekIdx) => (
-              <div key={weekIdx} className="grid grid-cols-7 gap-0">
-                {week.map((day, dayIdx) => (
-                  <button
-                    key={dayIdx}
-                    disabled={day === null}
-                    onClick={() => day && handleDateClick(day)}
-                    className={clsx(
-                      "w-10 h-10 flex items-center justify-center text-xs font-medium rounded-full",
-                      day === null && "invisible",
-                      day !== null && !isSelected(day) && "text-neutral-600 hover:bg-neutral-100",
-                      day !== null && isSelected(day) && "bg-background-200 text-neutral-900"
-                    )}
-                  >
-                    {day}
-                  </button>
-                ))}
+              <div key={weekIdx} className="grid grid-cols-7 gap-0" role="row">
+                {week.map((day, dayIdx) => {
+                  const dateLabel = day
+                    ? new Date(viewYear, viewMonth, day).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        month: "long",
+                        day: "numeric",
+                      })
+                    : undefined;
+                  return (
+                    <button
+                      key={dayIdx}
+                      type="button"
+                      role="gridcell"
+                      disabled={day === null}
+                      aria-label={dateLabel}
+                      aria-selected={day !== null && isSelected(day)}
+                      onClick={() => day && handleDateClick(day)}
+                      className={clsx(
+                        "w-10 h-10 flex items-center justify-center text-xs font-medium rounded-full",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+                        day === null && "invisible",
+                        day !== null && !isSelected(day) && "text-neutral-600 hover:bg-neutral-100",
+                        day !== null && isSelected(day) && "bg-background-200 text-neutral-900"
+                      )}
+                    >
+                      {day}
+                    </button>
+                  );
+                })}
               </div>
             ))}
           </div>
@@ -172,8 +212,11 @@ export function DatePickerModal({
 
         {/* Pick button */}
         <button
-          className="bg-primary-400 text-white px-8 py-2 rounded-2xl text-base font-normal hover:bg-primary-500"
+          type="button"
+          className="bg-primary-400 text-white px-8 py-2 rounded-2xl text-base font-normal hover:bg-primary-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary-100"
           onClick={handlePick}
+          disabled={!tempSelectedDate}
+          aria-disabled={!tempSelectedDate}
         >
           Pick
         </button>

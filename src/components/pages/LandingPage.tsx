@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
 import logoImg from "../../assets/logo-desktop-color 2.png";
 import heroImg from "../../assets/MM-Home-3 1.png";
 
@@ -39,17 +40,13 @@ export function LandingPage() {
         </p>
 
         <div className="flex flex-col gap-3">
-          <label htmlFor="postcode" className="text-2xl text-black font-normal">
-            Type in Your Postcode:
-          </label>
-          <input
+          <Input
             id="postcode"
-            type="text"
+            label="Type in Your Postcode:"
             value={postcode}
             onChange={(e) => setPostcode(e.target.value)}
             placeholder="SW1A 2AB"
-            className="border border-neutral-400 p-3 text-lg text-neutral-800 bg-white focus:outline-none focus:border-primary-400"
-            aria-label="Enter your postcode"
+            error={postcode && !isPostcodeValid ? "Invalid Postcode" : undefined}
           />
           <Button
             variant="primary"
