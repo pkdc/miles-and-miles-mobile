@@ -7,6 +7,7 @@ import { AvailableVehiclesPage } from './components/pages/AvailableVehiclesPage'
 import { VehicleDetailsPage } from './components/pages/VehicleDetailsPage'
 import { ConfirmDeliveryDetailsPage } from './components/pages/ConfirmDeliveryDetailsPage'
 import { ConfirmationPage } from './components/pages/ConfirmationPage'
+import { PreviewPage } from './components/pages/PreviewPage'
 
 const router = createBrowserRouter([
   { path: '/', element: <LandingPage /> },
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
   { path: '/vehicle-details', element: <VehicleDetailsPage /> },
   { path: '/confirm-delivery', element: <ConfirmDeliveryDetailsPage /> },
   { path: '/confirmation', element: <ConfirmationPage /> },
+  { path: '/preview', element: <PreviewPage /> },
 ])
 
 function App() {
