@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
+import { Header } from "../ui/Header";
 import { Input } from "../ui/Input";
-import logoImg from "../../assets/logo-desktop-color 2.png";
 import heroImg from "../../assets/MM-Home-3 1.png";
 
 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i;
@@ -18,10 +18,7 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <div className="w-full">
         <div className="w-full h-px bg-primary-400" />

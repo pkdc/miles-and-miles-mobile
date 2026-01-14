@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
+import { Header } from "../ui/Header";
 import { VehicleCard, type Vehicle } from "../ui/VehicleCard";
-import logoImg from "../../assets/logo-desktop-color 2.png";
 import rangeroverRed from "../../assets/rangerover_red.png";
 import rangeroverGrey from "../../assets/rangerover_grey.png";
 import jaguarSilver from "../../assets/jaguar_silver.png";
@@ -34,10 +34,7 @@ export function AvailableVehiclesPage() {
       className="min-h-screen bg-background-200 flex flex-col"
       onClick={() => setSelectedVehicleId(null)}
     >
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <div className="px-4 mt-2">
         <h1 className="text-3xl font-semibold text-black">

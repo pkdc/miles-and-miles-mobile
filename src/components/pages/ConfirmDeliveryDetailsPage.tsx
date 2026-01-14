@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
-import logoImg from "../../assets/logo-desktop-color 2.png";
+import { Header } from "../ui/Header";
+import { VehicleCard } from "../ui/VehicleCard";
 import rangeroverRed from "../../assets/rangerover_red.png";
 
 export function ConfirmDeliveryDetailsPage() {
@@ -8,21 +9,22 @@ export function ConfirmDeliveryDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <div className="flex-1 px-4">
         <h1 className="text-3xl font-semibold text-black mt-2">
           Confirm Delivery Details
         </h1>
 
-        <div className="bg-white/25 rounded-3xl p-4 mt-4 flex items-center justify-center">
-          <img
-            src={rangeroverRed}
-            alt="Range Rover Evoque"
-            className="w-72 h-32 object-contain"
+        <div className="mt-4">
+          <VehicleCard
+            vehicle={{
+              id: 1,
+              name: "Range Rover Evoque P300e R-Dynamic HSE",
+              image: rangeroverRed,
+              price: 1200,
+            }}
+            size="large"
           />
         </div>
 

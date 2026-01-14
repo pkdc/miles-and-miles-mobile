@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
-import logoImg from "../../assets/logo-desktop-color 2.png";
+import { Header } from "../ui/Header";
 import mapImg from "../../assets/10_Downing_street_google_map.png";
 
 export function AddressPage() {
@@ -11,10 +11,7 @@ export function AddressPage() {
       className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col"
       style={{ backgroundImage: `url(${mapImg})` }}
     >
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <h1 className="text-3xl text-black font-bold px-4 mt-2">
         Check Your Address

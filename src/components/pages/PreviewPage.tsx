@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import { DatePickerModal } from "../ui/DatePickerModal";
+import { Header } from "../ui/Header";
 import { Input } from "../ui/Input";
 import { TimePickerModal } from "../ui/TimePickerModal";
 import { VehicleCard, type Vehicle } from "../ui/VehicleCard";
@@ -134,6 +135,13 @@ export function PreviewPage() {
             <p className="text-sm mb-2">Disabled</p>
             <Input placeholder="SW1A 2AB" disabled />
           </div>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold mb-4">Header</h2>
+        <div className="bg-background-100 rounded-lg">
+          <Header />
         </div>
       </section>
     </div>

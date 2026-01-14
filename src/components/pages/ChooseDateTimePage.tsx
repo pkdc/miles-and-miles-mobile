@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { DatePickerModal } from "../ui/DatePickerModal";
+import { Header } from "../ui/Header";
 import { TimePickerModal } from "../ui/TimePickerModal";
-import logoImg from "../../assets/logo-desktop-color 2.png";
 import openDoorImg from "../../assets/open_door.png";
 
 interface SelectedTime {
@@ -37,10 +37,7 @@ export function ChooseDateTimePage() {
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <div className="px-4 mt-4">
         <h1 className="text-3xl font-semibold text-black">

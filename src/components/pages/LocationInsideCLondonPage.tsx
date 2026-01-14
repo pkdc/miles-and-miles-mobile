@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
-import logoImg from "../../assets/logo-desktop-color 2.png";
+import { Header } from "../ui/Header";
 import iconGood from "../../assets/icon-good.svg";
 
 export function LocationInsideCLondonPage() {
@@ -8,10 +8,7 @@ export function LocationInsideCLondonPage() {
 
   return (
     <div className="min-h-screen bg-background-200 flex flex-col">
-      <header className="flex flex-col items-center py-2">
-        <img src={logoImg} alt="Miles & Miles" className="h-14 w-auto" />
-        <div className="w-full max-w-md h-px bg-primary-400 mt-2" />
-      </header>
+      <Header />
 
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <img src={iconGood} alt="Success" className="w-56 h-56 mb-14" />
