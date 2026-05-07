@@ -25,25 +25,27 @@ export function LandingPage() {
         <img
           src={heroImg}
           alt="Range Rover"
-          className="w-full aspect-square object-cover object-center"
+          className="w-full aspect-[4/5] object-cover object-center"
         />
         <div className="w-full h-px bg-primary-400" />
       </div>
 
-      <main className="flex-1 px-4 py-4">
-        <p className="text-xl leading-normal text-black mb-4">
+      <main className="flex-1 flex flex-col px-2 pt-4 pb-[100px]">
+        <p className="text-xl leading-normal text-black mb-4 px-2">
           Rent a high-end vehicle from London's oldest independent car rental
           company
         </p>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 mt-auto">
           <Input
             id="postcode"
             label="Type in Your Postcode:"
             value={postcode}
             onChange={(e) => setPostcode(e.target.value)}
             placeholder="SW1A 2AB"
-            error={postcode && !isPostcodeValid ? "Invalid Postcode" : undefined}
+            error={
+              postcode && !isPostcodeValid ? "Invalid Postcode" : undefined
+            }
           />
           <Button
             variant="primary"
