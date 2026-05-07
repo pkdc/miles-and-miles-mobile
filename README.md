@@ -1,8 +1,9 @@
-# Miles and Miles Mobile
+# Miles & Miles — Mobile Booking Flow
 
-A mobile UX prototype for a premium vehicle rental and delivery service application.
+A speculative mobile app prototype for Miles & Miles' home delivery service in central London. Designed as a focused booking flow: enter postcode, confirm delivery zone, pick date and time, choose vehicle, confirm.
 
-> **Note**: This prototype is designed exclusively for mobile screen sizes. For the intended experience, view it on a mobile device or use your browser's device emulation mode.
+**Live prototype:** https://miles-and-miles-mobile-happy.netlify.app/
+**Component gallery:** https://miles-and-miles-mobile-happy.netlify.app/preview
 
 ## Table of Contents
 
@@ -32,7 +33,7 @@ npm install
 npm run dev
 ```
 
-The application runs at `http://localhost:5173`. Open your browser's developer tools and enable device emulation for the best experience.
+The application runs at `http://localhost:5173`. On desktop the app renders inside a centered phone frame; on mobile it fills the screen. Browser device emulation is optional but useful for previewing the mobile layout outside the frame.
 
 ### Available Commands
 
@@ -51,6 +52,10 @@ Miles and Miles Mobile demonstrates a complete booking flow for a high-end vehic
 
 **Target Audience**: UX designers, product managers, and developers evaluating the mobile booking experience.
 
+### Responsive Behavior
+
+On mobile viewports the booking flow fills the screen edge to edge. On desktop viewports (`md` breakpoint, `>= 768px`) the same flow is rendered inside a centered 390 x 844 phone frame with rounded corners and a drop shadow against a grey backdrop. This wrapper is implemented in `src/App.tsx` and uses Tailwind responsive utilities only -- no JavaScript viewport detection.
+
 ## Features
 
 | Feature                     | Description                                              |
@@ -59,9 +64,10 @@ Miles and Miles Mobile demonstrates a complete booking flow for a high-end vehic
 | UK Postcode Validation      | Real-time validation of British postcodes                |
 | Interactive Vehicle Selection | Browse and select from premium vehicles                |
 | Date and Time Scheduling    | Custom modal pickers for delivery scheduling             |
-| Mobile-First Design         | Optimized for touch interactions on mobile devices       |
+| Mobile-First Design         | Optimized for touch on mobile; framed phone view on desktop |
 | Accessible Components       | ARIA labels, keyboard navigation, and focus management   |
 | Component Preview           | Developer tool for viewing all UI component states       |
+| Live Demo                   | Deployed on Netlify for instant browser access           |
 
 ## Tech Stack
 
@@ -452,6 +458,8 @@ npx tsc --noEmit
 
 ### Mobile Preview
 
+The app is viewable on any screen size: desktop renders the booking flow inside a centered phone frame, and mobile fills the viewport. Browser device emulation is useful for inspecting the raw mobile layout without the desktop frame.
+
 **How to enable device emulation**
 
 - **Chrome**: Open DevTools (F12) > Toggle Device Toolbar (Ctrl+Shift+M)
@@ -462,7 +470,7 @@ npx tsc --noEmit
 
 ## Disclaimer
 
-This is a UX prototype intended for demonstration and design validation purposes only. It does not include backend integration, authentication, or data persistence.
+Speculative bootcamp project. Not affiliated with or endorsed by Miles & Miles Car & Van Rental. Brand identity, logo, and visual system belong to Miles & Miles and are used here for educational purposes only.
 
 ## License
 
