@@ -16,6 +16,10 @@
   --font-size-button: 22px;
 }
 
+body {
+  background-color: black;
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
