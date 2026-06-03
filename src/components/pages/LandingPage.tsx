@@ -17,26 +17,26 @@ export function LandingPage() {
   const isPostcodeValid = isValidUKPostcode(postcode);
 
   return (
-    <div className="min-h-screen bg-background-200 flex flex-col">
+    <div className="h-screen bg-background-200 flex flex-col">
       <Header />
 
-      <div className="w-full">
+      <div className="w-full flex-1 min-h-0 flex flex-col">
         <div className="w-full h-px bg-primary-400" />
         <img
           src={heroImg}
           alt="Range Rover"
-          className="w-full aspect-[4/5] object-cover object-center"
+          className="w-full flex-1 min-h-0 object-cover object-center"
         />
         <div className="w-full h-px bg-primary-400" />
       </div>
 
-      <main className="flex-1 flex flex-col px-2 pt-4 pb-[100px]">
+      <main className="flex flex-col px-2 pt-4 pb-8">
         <p className="text-xl leading-normal text-black mb-4 px-2">
           Rent a high-end vehicle from London's oldest independent car rental
           company
         </p>
 
-        <div className="flex flex-col gap-3 mt-auto">
+        <div className="flex flex-col gap-6">
           <Input
             id="postcode"
             label="Type in Your Postcode:"

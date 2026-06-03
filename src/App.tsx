@@ -27,7 +27,7 @@ function App() {
       {/* <div className="w-full bg-yellow-50 border-b border-yellow-200 p-2 text-center text-xs font-medium text-yellow-800 fixed top-0 left-0 right-0 z-50">
         ⚠️ Please use mobile to view this prototype.
       </div> */}
-      <div className="min-h-screen bg-background-200 flex items-center justify-center md:p-8">
+      <div className="min-h-screen bg-black-800 flex items-center justify-center md:p-8">
         <div className="w-full md:w-[390px] min-h-screen md:h-[min(844px,calc(100vh-4rem))] bg-background-100 md:rounded-[2.5rem] md:shadow-2xl overflow-hidden md:overflow-y-auto no-scrollbar">
           <RouterProvider router={router} />
         </div>
